@@ -1,8 +1,8 @@
 #include "BaseComponent.h"
 
 dae::BaseComponent::BaseComponent(GameObject* pOwner)
-	: m_pOwner{ pOwner }
-	, m_IsMarkedForRemoval{false}
+	: m_IsMarkedForRemoval{false}
+	, m_pOwner{ pOwner }
 {
 }
 
