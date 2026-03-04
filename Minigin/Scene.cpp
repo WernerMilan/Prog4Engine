@@ -54,7 +54,7 @@ void Scene::Render() const
 
 void dae::Scene::CleanUpMarkedObjects()
 {
-	for (int objIdx{ 0 }; objIdx < m_objects.size(); ++objIdx)
+	for (size_t objIdx{ 0 }; objIdx < m_objects.size(); ++objIdx)
 	{
 		if (m_objects[objIdx]->IsMarkedForDeletion())
 		{
