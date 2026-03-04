@@ -14,13 +14,13 @@ namespace dae
 		std::vector<std::unique_ptr<BaseComponent>> m_pComponents{};
 		Transform m_transform{};
 		std::shared_ptr<Texture2D> m_texture{};
+		bool m_MarkedForDeletion{};
 
 	public:
 		virtual void AddComponent(std::unique_ptr<BaseComponent> pComponent);
 		virtual void RemoveComponent(const BaseComponent& component);
 		template <typename ComponentType>
 		ComponentType* GetComponent();
-
 		template <typename ComponentType>
 		bool HasComponent() const;
 
@@ -30,7 +30,6 @@ namespace dae
 
 		void SetTexture(const std::string& filename);
 		void SetPosition(float x, float y);
-
 		const Transform& GetTransform() const;
 
 		GameObject() = default;
@@ -39,6 +38,8 @@ namespace dae
 		GameObject(GameObject&& other) = delete;
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other) = delete;
+
+		bool IsMarkedForDeletion() const;
 	};
 
 	template<typename ComponentType>

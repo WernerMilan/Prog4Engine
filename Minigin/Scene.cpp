@@ -28,10 +28,12 @@ void Scene::RemoveAll()
 
 void Scene::Update(float deltaTime)
 {
-	for(auto& object : m_objects)
+	for (auto& object : m_objects)
 	{
 		object->Update(deltaTime);
 	}
+
+	CleanUpMarkedObjects();
 }
 
 void dae::Scene::FixedUpdate(float deltaTime)
@@ -47,6 +49,17 @@ void Scene::Render() const
 	for (const auto& object : m_objects)
 	{
 		object->Render();
+	}
+}
+
+void dae::Scene::CleanUpMarkedObjects()
+{
+	for (int objIdx; objIdx < m_objects.size(); ++objIdx)
+	{
+		if (m_objects[objIdx]->IsMarkedForDeletion())
+		{
+			m_objects.erase(m_objects.begin() + objIdx);
+		}
 	}
 }
 

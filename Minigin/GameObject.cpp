@@ -6,6 +6,11 @@
 
 dae::GameObject::~GameObject() = default;
 
+bool dae::GameObject::IsMarkedForDeletion() const
+{
+	return m_MarkedForDeletion;
+}
+
 void dae::GameObject::AddComponent(std::unique_ptr<BaseComponent> pComponent)
 {
 	m_pComponents.emplace_back(std::move(pComponent));
