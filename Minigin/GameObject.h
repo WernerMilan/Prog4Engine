@@ -15,6 +15,10 @@ namespace dae
 		Transform m_transform{};
 		std::shared_ptr<Texture2D> m_texture{};
 		bool m_MarkedForDeletion{};
+		GameObject* m_Parent{};
+		bool m_PositionIsDirty{false};
+		glm::vec3 m_LocalPosition{};
+		glm::vec3 m_WorldPosition{};
 
 	public:
 		virtual void AddComponent(std::unique_ptr<BaseComponent> pComponent);
@@ -23,6 +27,18 @@ namespace dae
 		ComponentType* GetComponent();
 		template <typename ComponentType>
 		bool HasComponent() const;
+
+		void AddChild(GameObject* child);
+		void RemoveChild(GameObject* child);
+
+		bool IsChild(GameObject* parent);
+		void SetPositionDirty();
+
+		void SetParent(GameObject* parent, bool keepWorldPosition);
+		void SetLocalPosition(const glm::vec3& pos);
+
+		const glm::vec3& GetWorldPosition();
+		void UpdateWorldPosition();
 
 		virtual void Update(float deltaTime);
 		virtual void FixedUpdate(float deltaTime);
