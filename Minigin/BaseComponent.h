@@ -24,6 +24,6 @@ namespace dae
 
 	protected:
 
-		std::unique_ptr<GameObject> m_pOwner;
+		GameObject* m_pOwner;
 	};
 }

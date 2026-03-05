@@ -113,7 +113,7 @@ void dae::GameObject::FixedUpdate(float deltaTime)
 
 void dae::GameObject::Render() const
 {
-	const auto& pos = m_transform.GetPosition();
+	const auto& pos = m_Transform.GetPosition();
 
 	if (m_texture)
 	{
@@ -133,10 +133,10 @@ void dae::GameObject::SetTexture(const std::string& filename)
 
 void dae::GameObject::SetPosition(float x, float y)
 {
-	m_transform.SetPosition(x, y, 0.0f);
+	m_Transform.SetPosition(x, y, 0.0f);
 }
 
 const dae::Transform& dae::GameObject::GetTransform() const
 {
-	return m_transform;
+	return m_Transform;
 }

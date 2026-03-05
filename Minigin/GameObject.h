@@ -12,7 +12,7 @@ namespace dae
 	class GameObject 
 	{
 		std::vector<std::unique_ptr<BaseComponent>> m_pComponents{};
-		Transform m_transform{};
+		Transform m_Transform{};
 		std::shared_ptr<Texture2D> m_texture{};
 		bool m_MarkedForDeletion{};
 		GameObject* m_Parent{};

@@ -9,16 +9,12 @@ dae::TextComponent::TextComponent(GameObject* pOwner)
 
 dae::TextComponent::~TextComponent() = default;
 
-void dae::TextComponent::Update(float) {}
-
-void dae::TextComponent::FixedUpdate(float) {}
-
-void dae::TextComponent::Render()
+void dae::TextComponent::Update(float)
 {
-	if (m_NeedsUpdate && m_Font != nullptr)
+	if (m_NeedsUpdate && m_pFont != nullptr)
 	{
-		const SDL_Color color = { 255, 255, 255, 255 }; 
-		auto surface = TTF_RenderText_Blended(m_Font->GetFont(), m_Text.c_str(), 0, color);
+		const SDL_Color color = { 255, 255, 255, 255 };
+		auto surface = TTF_RenderText_Blended(m_pFont->GetFont(), m_Text.c_str(), m_Text.length(), color);
 
 		if (surface)
 		{
@@ -27,11 +23,17 @@ void dae::TextComponent::Render()
 
 			if (texture)
 			{
-				m_pTextTexture = std::make_unique<Texture2D>(texture);
+				m_pTextTexture = std::make_shared<Texture2D>(texture);
 			}
 		}
 		m_NeedsUpdate = false;
 	}
+}
+
+void dae::TextComponent::FixedUpdate(float) {}
+
+void dae::TextComponent::Render()
+{
 
 	if (m_pTextTexture)
 	{
@@ -51,5 +53,5 @@ void dae::TextComponent::SetText(const std::string& text)
 
 void dae::TextComponent::SetFont(std::shared_ptr<Font> pFont)
 {
-	m_Font = pFont;
+	m_pFont = pFont;
 }

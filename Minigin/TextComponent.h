@@ -29,8 +29,8 @@ namespace dae
 	private:
 
 		std::string m_Text;
-		std::shared_ptr<Font> m_Font;
-		std::unique_ptr<Texture2D> m_pTextTexture;
+		std::shared_ptr<Font> m_pFont;
+		std::shared_ptr<Texture2D> m_pTextTexture;
 		bool m_NeedsUpdate{ true };
 	};
 }

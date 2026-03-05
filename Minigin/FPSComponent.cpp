@@ -19,7 +19,8 @@ void dae::FPSComponent::Update(float deltaTime)
         const float fps = static_cast<float>(m_FrameCount) / m_AccuTime;
 
         auto textComp = m_pOwner->GetComponent<TextComponent>();
-        if (textComp) {
+        if (textComp)
+        {
             std::stringstream ss;
             ss << std::fixed << std::setprecision(1) << fps << " FPS";
             textComp->SetText(ss.str());
